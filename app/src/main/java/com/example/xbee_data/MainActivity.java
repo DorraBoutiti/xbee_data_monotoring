@@ -9,6 +9,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             protected List<Entry> doInBackground(Void... voids) {
                 try {
                     return ThingSpeakAPI.getLastEntries();
-                } catch (IOException | JSONException e) {
+                } catch (IOException | JSONException | ParseException e) {
                     e.printStackTrace();
                     return null;
                 }
