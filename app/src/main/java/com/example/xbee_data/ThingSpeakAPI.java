@@ -1,5 +1,7 @@
 package com.example.xbee_data;
 
+import com.github.mikephil.charting.data.Entry;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,8 +20,8 @@ import java.util.List;
 
 public class ThingSpeakAPI {
     private static final String BASE_URL = "https://api.thingspeak.com/channels/";
-    private static final String READ_API_KEY = "0O2P3K2VHSYB52YW";
-    private static final int CHANNEL_ID = 2136774;
+    private static final String READ_API_KEY = "****************";
+    private static final int CHANNEL_ID = 000000000;
     private static final int NUM_ENTRIES = 10;
 
     public static List<Entry> getLastEntries() throws IOException, JSONException, ParseException {
@@ -42,14 +44,14 @@ public class ThingSpeakAPI {
         JSONArray feeds = json.getJSONArray("feeds");
         for (int i = 0; i < feeds.length(); i++) {
             JSONObject feed = feeds.getJSONObject(i);
-            Entry entry = new Entry();String dateString = feed.getString("created_at");
+            String dateString = feed.getString("created_at");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             Date date = dateFormat.parse(dateString);
-            entry.SetCreated_at(date);
-            entry.setField1(Float.parseFloat(feed.getString("field1")));
-            // Add more fields as needed
+            float value = Float.parseFloat(feed.getString("field1"));
+            Entry entry = new Entry(date.getTime(), value);
             entries.add(entry);
         }
         return entries;
     }
+
 }
