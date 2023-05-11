@@ -20,8 +20,8 @@ import java.util.List;
 
 public class ThingSpeakAPI {
     private static final String BASE_URL = "https://api.thingspeak.com/channels/";
-    private static final String READ_API_KEY = "****************";
-    private static final int CHANNEL_ID = 000000000;
+    private static final String READ_API_KEY = "***************";
+    private static final int CHANNEL_ID = 000000000000;
     private static final int NUM_ENTRIES = 10;
 
     public static List<Entry> getLastEntries() throws IOException, JSONException, ParseException {
